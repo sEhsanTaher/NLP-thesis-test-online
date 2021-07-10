@@ -55,7 +55,7 @@ def sentiment():
     try:
         text = request.args.get('text')
 
-        data = pretrained_tokenizer(text, return_tensors="pt")
+        data = pretrained_tokenizer(text, padding="max_length", truncation=True, return_tensors="pt", max_length=32)
         output = sentiment_model(input_ids=data["input_ids"], attention_mask=data["token_type_ids"],
                                  token_type_ids=data["attention_mask"])
         sentiment_output = output["logits_similarity"].cpu().detach().numpy()
