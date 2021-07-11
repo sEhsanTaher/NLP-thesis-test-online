@@ -1,7 +1,7 @@
 from google_drive_downloader import GoogleDriveDownloader as gdd
 import os
 files = {
-    "my_module_1400_02_10.pt": "126sTLOrOzBrq6NdwFk9__nkHqDoHx3O7",
+    "my_module_1400_02_10.pt": "1dVI5m6-JIJ1PQQl-2g5SSFVJ84fhKXee",
     "NER_model.pt": "1a4Mt49vssYO9PlZyzNOE1MKdqgCNrv-M",
     "peyma_ner_id2tag.pickle": "1-3FUUQC2gsh3eJUjEJF3qwgemy2YMo_8",
     "peyma_ner_tag2id.pickle": "1--oMUwhJg4F_H3HlG8mYxD5zhSnWf45t",
