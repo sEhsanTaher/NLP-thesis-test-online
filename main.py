@@ -62,7 +62,7 @@ def sentiment():
         sentiment_output_softmax = softmax(sentiment_output[0])
         label = np.argmax(sentiment_output_softmax)
         confidence = np.max(sentiment_output_softmax)
-        result = "Label:\t" + str(sentiment_id2tag[label]) + "<br /> Confidence:\t" + str(sentiment_output)
+        result = "Label:\t" + str(sentiment_id2tag[label]) + "<br /> Confidences:\t" + str(sentiment_output_softmax) + "<br /> Logits:\t" + str(sentiment_output)
     except:
         text = ""
         result = ""
