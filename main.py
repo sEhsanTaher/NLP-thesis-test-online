@@ -69,8 +69,8 @@ def sentiment():
         confidence = np.max(sentiment_output_softmax)
         result = "Label:\t" + str(sentiment_id2tag[label]) + "<br /> Confidences:\t" + str(sentiment_output_softmax) + "<br /> Logits:\t" + str(sentiment_output)
     except Exception as e: 
-        text = str(e)
-        result = ""
+        text = ""
+        result = str(e)
     return form_html.format_map({"text": text, "result": result})
 
 
@@ -112,8 +112,8 @@ def ner():
             result += pretrained_tokenizer.decode(last_word) + "\t---\t" + last_tag + "<br />"
 
     except Exception as e: 
-        text = str(e)
-        result = ""
+        text = ""
+        result = str(e)
     return form_html.format_map({"text": text, "result": result})
 
 
