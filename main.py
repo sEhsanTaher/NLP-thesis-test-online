@@ -90,8 +90,8 @@ def ner():
         logits_ner = logits_ner.tolist()
         words = data["input_ids"][0].cpu().detach().tolist()
         tags = [peyma_ner_id2tag[i] for i in logits_ner]
-
-        result = ""
+        
+        result = str(tags) +"<br /><br /><br />"
         last_word = []
         last_tag = None
         for i in range(len(words)):
