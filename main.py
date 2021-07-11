@@ -16,8 +16,11 @@ import get_data
 
 
 from flask import Flask, jsonify, render_template, request
-rep_pretrained_model_name = "HooshvareLab/bert-base-parsbert-uncased"
-pretrained_tokenizer = AutoTokenizer.from_pretrained(rep_pretrained_model_name)
+rep_pretrained_model_name_sentiment = "HooshvareLab/bert-fa-base-uncased-sentiment-deepsentipers-binary"
+rep_pretrained_model_name_ner = "HooshvareLab/bert-base-parsbert-ner-uncased"
+
+pretrained_tokenizer_sentiment = AutoTokenizer.from_pretrained(rep_pretrained_model_name_sentiment)
+pretrained_tokenizer_ner = AutoTokenizer.from_pretrained(rep_pretrained_model_name_ner)
 
 sentiment_model = torch.load("./data/my_module_1400_02_10.pt", map_location='cpu')
 sentiment_model.eval()
@@ -57,7 +60,7 @@ def sentiment():
     try:
         text = request.args.get('text')
 
-        data = pretrained_tokenizer(text, padding="max_length", truncation=True, return_tensors="pt", max_length=32)
+        data = pretrained_tokenizer_sentiment(text, padding="max_length", truncation=True, return_tensors="pt", max_length=32)
         output = sentiment_model(input_ids=data["input_ids"], attention_mask=data["token_type_ids"],
                                  token_type_ids=data["attention_mask"])
         sentiment_output = output["logits_similarity"].cpu().detach().numpy()
@@ -77,7 +80,7 @@ def ner():
 
         text = request.args.get('text')
 
-        data = pretrained_tokenizer(text, return_tensors="pt")
+        data = pretrained_tokenizer_ner(text, return_tensors="pt")
         output = ner_model(input_ids=data["input_ids"], attention_mask=data["token_type_ids"],
                            token_type_ids=data["attention_mask"])
 
