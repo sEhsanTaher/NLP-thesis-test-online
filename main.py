@@ -59,10 +59,10 @@ def sentiment():
         output = sentiment_model(input_ids=data["input_ids"], attention_mask=data["token_type_ids"],
                                  token_type_ids=data["attention_mask"])
         sentiment_output = output["logits_similarity"].cpu().detach().numpy()
-        sentiment_output = softmax(sentiment_output[0])
-        label = np.argmax(sentiment_output)
-        confidence = np.max(sentiment_output)
-        result = "Label:\t" + str(sentiment_id2tag[label]) + "<br /> Confidence:\t" + str(confidence)
+        sentiment_output_softmax = softmax(sentiment_output[0])
+        label = np.argmax(sentiment_output_softmax)
+        confidence = np.max(sentiment_output_softmax)
+        result = "Label:\t" + str(sentiment_id2tag[label]) + "<br /> Confidence:\t" + str(sentiment_output)
     except:
         text = ""
         result = ""
