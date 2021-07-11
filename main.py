@@ -98,7 +98,7 @@ def ner():
             tag = tags[i]
             if tag != "X" and not tag.startswith("I-"):
                 if last_tag is not None and len(last_word)>0:
-                    result += pretrained_tokenizer.decode(last_word) + "\t---\t" + last_tag + "<br />"
+                    result += pretrained_tokenizer_ner.decode(last_word) + "\t---\t" + last_tag + "<br />"
                 last_word = []
                 last_tag = None
 
