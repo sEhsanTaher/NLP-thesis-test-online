@@ -20,7 +20,9 @@ rep_pretrained_model_name = "HooshvareLab/bert-base-parsbert-uncased"
 pretrained_tokenizer = AutoTokenizer.from_pretrained(rep_pretrained_model_name)
 
 sentiment_model = torch.load("./data/my_module_1400_02_10.pt", map_location='cpu')
+sentiment_model.eval()
 ner_model = torch.load("./data/NER_model.pt", map_location='cpu')
+ner_model.eval()
 with open('./data/peyma_ner_tag2id.pickle', 'rb') as handle:
     peyma_ner_tag2id = pickle.load(handle)
 with open('./data/peyma_ner_id2tag.pickle', 'rb') as handle:
